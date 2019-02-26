@@ -26,8 +26,13 @@ export default class App extends Component {
         <SavedList list={this.state.savedList} />
         <div>Replace this Div with your Routes</div>
         <Route exact path='/' component={MovieList} />
-        <Route path='/movies/:id' component={Movie} />
+        <Route path="/movies/:id" render={ (props) => {
+          return(<Movie {...props} addToSavedList={this.addToSavedList}/>)
+        }} />
       </div>
     );
   }
 }
+
+// If you use render prop in Route instead of component,
+// can do an inline function that renders a component with props.
